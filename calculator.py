@@ -1,5 +1,6 @@
-"""A small calculator supporting the four basic arithmetic operations."""
+"""A small calculator supporting basic arithmetic and square roots."""
 
+import math
 from numbers import Real
 
 
@@ -41,6 +42,16 @@ def divide(left: Real, right: Real) -> float:
     if right == 0:
         raise ZeroDivisionError("cannot divide by zero")
     return left / right
+
+
+def sqrt(value: Real) -> float:
+    """Return the non-negative square root of *value*.
+
+    Raises:
+        ValueError: if *value* is not a real number or is negative.
+    """
+    _validate_number(value)
+    return math.sqrt(value)
 
 
 def calculate(left: Real, operator: str, right: Real) -> Real:

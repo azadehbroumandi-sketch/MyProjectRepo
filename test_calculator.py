@@ -1,6 +1,6 @@
 import unittest
 
-from calculator import add, calculate, divide, multiply, subtract
+from calculator import add, calculate, divide, multiply, sqrt, subtract
 
 
 class CalculatorTests(unittest.TestCase):
@@ -19,6 +19,21 @@ class CalculatorTests(unittest.TestCase):
     def test_division(self):
         self.assertEqual(divide(8, 2), 4)
         self.assertEqual(calculate(8, "/", 2), 4)
+
+    def test_square_root(self):
+        self.assertEqual(sqrt(9), 3)
+        self.assertEqual(sqrt(0), 0)
+        self.assertAlmostEqual(sqrt(2), 2 ** 0.5)
+
+    def test_square_root_rejects_negative_values(self):
+        with self.assertRaises(ValueError):
+            sqrt(-1)
+
+    def test_square_root_rejects_invalid_values(self):
+        with self.assertRaises(ValueError):
+            sqrt("nine")
+        with self.assertRaises(ValueError):
+            sqrt(True)
 
     def test_decimal_operations(self):
         self.assertAlmostEqual(calculate(0.1, "+", 0.2), 0.3)
